@@ -1,6 +1,12 @@
 # Node modules
 /node_modules
 
+# Environment files
+.env
+.env.local
+.env.production
+.env.*.local
+
 # Compilation output
 /dist
 
@@ -18,3 +24,4 @@
 
 # Hardhat coverage reports
 /coverage
+
