@@ -25,3 +25,6 @@
 # Hardhat coverage reports
 /coverage
 
+# Keep Ignition deployments for reproducibility
+# /ignition/deployments - DO NOT IGNORE (we want to track these)
+

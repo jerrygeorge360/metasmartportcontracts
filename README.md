@@ -19,7 +19,66 @@ MetaSmartPort consists of several key components:
 - **Automated Rebalancing**: Smart contract-based portfolio rebalancing
 - **Multi-Environment**: Localhost, testnet, and mainnet configurations
 
-## 📁 Project Structure
+## � Live Deployments
+
+### Monad Testnet (Chain ID: 10143)
+✅ **Deployed and Verified on MonadScan**
+
+#### 🔧 DEX Infrastructure
+- **UniswapV2Factory**: [`0x7Bf4523bA76772F7Ed499aba5eb4Ea83168594b6`](https://testnet.monadscan.com/address/0x7Bf4523bA76772F7Ed499aba5eb4Ea83168594b6#code)
+- **UniswapV2Router02**: [`0xcF9884827F587Cd9a0bDce33995B2333eE7e8285`](https://testnet.monadscan.com/address/0xcF9884827F587Cd9a0bDce33995B2333eE7e8285#code)
+
+#### 🪙 Token Contracts
+- **WMON (Wrapped MON)**: [`0xAd22b4EC8cdd8A803d0052632566F6334A04F1F3`](https://testnet.monadscan.com/address/0xAd22b4EC8cdd8A803d0052632566F6334A04F1F3#code)
+- **Test DAI**: [`0x8A2F5094992835Cc6C2c83e515FbdA4270182fE9`](https://testnet.monadscan.com/address/0x8A2F5094992835Cc6C2c83e515FbdA4270182fE9#code)
+- **Test USDC**: [`0x065A0af7bfF900deB2Bcb7Ae3fc6e1dD52579aC7`](https://testnet.monadscan.com/address/0x065A0af7bfF900deB2Bcb7Ae3fc6e1dD52579aC7#code)
+- **Test USDT**: [`0x8a1515Bce4Fb424343E8187959dF197cB33Fc1b9`](https://testnet.monadscan.com/address/0x8a1515Bce4Fb424343E8187959dF197cB33Fc1b9#code)
+- **Test WBTC**: [`0x49C17A91672c629543a14782809E246296317bA3`](https://testnet.monadscan.com/address/0x49C17A91672c629543a14782809E246296317bA3#code)
+
+#### 📊 Portfolio Management
+- **PortfolioFactory**: [`0x1861BB06286aAb0fDA903620844b4Aef4894b719`](https://testnet.monadscan.com/address/0x1861BB06286aAb0fDA903620844b4Aef4894b719#code)
+
+#### 🔗 Quick Links
+- **Network**: Monad Testnet
+- **RPC URL**: `https://testnet-rpc.monad.xyz`
+- **Block Explorer**: [testnet.monadscan.com](https://testnet.monadscan.com)
+- **Faucet**: Available in Monad Discord
+
+#### � Contract Verification
+To verify your own deployment on Monad testnet:
+
+```bash
+# Deploy contracts using Hardhat Ignition
+npx hardhat ignition deploy ignition/modules/features/full-deployment.ts --network monadTestnet
+
+# Verify all deployed contracts automatically
+npx hardhat ignition verify chain-10143 --network monadTestnet
+```
+
+**Requirements for verification:**
+- Ensure `dotenv` is installed: `npm install dotenv`
+- Set `PRIVATE_KEY` in your `.env` file
+- Set `ETHERSCAN_API_KEY` in your `.env` file (for MonadScan verification)
+
+#### �💡 Interact with Contracts
+```bash
+# Set network for all commands
+export NETWORK=monadTestnet
+
+# Initialize DEX with liquidity
+npm run setup:dex -- --network $NETWORK
+
+# Add liquidity to pools
+npm run liquidity:add -- --network $NETWORK
+
+# Execute token swaps
+npm run trading:swap -- --network $NETWORK
+
+# Create and manage portfolios
+npm run portfolio:create -- --network $NETWORK
+```
+
+## �📁 Project Structure
 
 ```
 ├── contracts/                 # Smart contracts

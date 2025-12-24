@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-5ee0e87c73874d876254556d8062aa84468554fc",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/tokens/WMON.sol": "project/contracts/tokens/WMON.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/tokens/WMON.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.28;\n\n/**\n * @title WMON (Wrapped Monad)\n * @dev Standard wrapped native token implementation\n * Based on WETH9 - battle-tested and widely used\n */\ncontract WMON {\n    string public constant name = \"Wrapped Monad\";\n    string public constant symbol = \"WMON\";\n    uint8 public constant decimals = 18;\n\n    event Approval(address indexed src, address indexed spender, uint amount);\n    event Transfer(address indexed src, address indexed dst, uint amount);\n    event Deposit(address indexed dst, uint amount);\n    event Withdrawal(address indexed src, uint amount);\n\n    mapping(address => uint) public balanceOf;\n    mapping(address => mapping(address => uint)) public allowance;\n\n    receive() external payable {\n        deposit();\n    }\n\n    function deposit() public payable {\n        balanceOf[msg.sender] += msg.value;\n        emit Deposit(msg.sender, msg.value);\n    }\n\n    function withdraw(uint amount) public {\n        require(balanceOf[msg.sender] >= amount, \"Insufficient balance\");\n        balanceOf[msg.sender] -= amount;\n        payable(msg.sender).transfer(amount);\n        emit Withdrawal(msg.sender, amount);\n    }\n\n    function totalSupply() public view returns (uint) {\n        return address(this).balance;\n    }\n\n    function approve(address spender, uint amount) public returns (bool) {\n        allowance[msg.sender][spender] = amount;\n        emit Approval(msg.sender, spender, amount);\n        return true;\n    }\n\n    function transfer(address dst, uint amount) public returns (bool) {\n        return transferFrom(msg.sender, dst, amount);\n    }\n\n    function transferFrom(\n        address src,\n        address dst,\n        uint amount\n    ) public returns (bool) {\n        require(balanceOf[src] >= amount, \"Insufficient balance\");\n\n        if (src != msg.sender && allowance[src][msg.sender] != type(uint).max) {\n            require(allowance[src][msg.sender] >= amount, \"Insufficient allowance\");\n            allowance[src][msg.sender] -= amount;\n        }\n\n        balanceOf[src] -= amount;\n        balanceOf[dst] += amount;\n\n        emit Transfer(src, dst, amount);\n        return true;\n    }\n}"
+      }
+    }
+  }
+}
