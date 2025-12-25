@@ -1,25 +1,25 @@
-# 🔥 MetaSmartPort Contracts
+#  MetaSmartPort Contracts
 
 A comprehensive decentralized exchange (DEX) and smart portfolio management system built on Ethereum. This project provides a complete DeFi infrastructure including token swapping, liquidity management, and automated portfolio rebalancing.
 
-## 🚀 Project Overview
+## Project Overview
 
 MetaSmartPort consists of several key components:
 
-### 🏗️ Core Contracts
+### Core Contracts
 - **WMON**: Wrapped native token for trading
 - **Test Tokens**: DAI, USDC, USDT, WBTC for development
 - **DEX System**: Uniswap V2 compatible factory and router
 - **Portfolio Management**: Smart portfolio factory and implementation
 
-### 🎯 Key Features
+### Key Features
 - **Decentralized Trading**: Full Uniswap V2 compatible DEX
 - **Liquidity Management**: Add/remove liquidity with automated pair creation
 - **Portfolio Management**: Create and manage diversified portfolios
 - **Automated Rebalancing**: Smart contract-based portfolio rebalancing
 - **Multi-Environment**: Localhost, testnet, and mainnet configurations
 
-## � Live Deployments
+##  Live Deployments
 
 ### Monad Testnet (Chain ID: 10143)
 ✅ **Deployed and Verified on MonadScan**
@@ -44,7 +44,7 @@ MetaSmartPort consists of several key components:
 - **Block Explorer**: [testnet.monadscan.com](https://testnet.monadscan.com)
 - **Faucet**: Available in Monad Discord
 
-#### � Contract Verification
+####  Contract Verification
 To verify your own deployment on Monad testnet:
 
 ```bash
@@ -60,7 +60,7 @@ npx hardhat ignition verify chain-10143 --network monadTestnet
 - Set `PRIVATE_KEY` in your `.env` file
 - Set `ETHERSCAN_API_KEY` in your `.env` file (for MonadScan verification)
 
-#### �💡 Interact with Contracts
+####  Interact with Contracts
 ```bash
 # Set network for all commands
 export NETWORK=monadTestnet
@@ -108,7 +108,7 @@ npm run portfolio:create -- --network $NETWORK
 └── artifacts/              # Compiled contracts
 ```
 
-## 🛠️ Technology Stack
+##  Technology Stack
 
 - **Hardhat 3 Beta**: Development framework
 - **Solidity 0.8.28**: Smart contract language
@@ -117,13 +117,13 @@ npm run portfolio:create -- --network $NETWORK
 - **Hardhat Ignition**: Declarative deployment system
 - **OpenZeppelin**: Secure contract libraries
 
-## 📋 Prerequisites
+## Prerequisites
 
 - Node.js 18+ 
 - npm or yarn
 - Git
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Installation
 
@@ -156,9 +156,9 @@ Declarative deployment with Ignition:
 npx hardhat ignition deploy ignition/modules/features/full-deployment.ts --network localhost
 ```
 
-## 📚 Deployment Options
+##  Deployment Options
 
-### 🎭 Script-Based Deployment (Imperative)
+### Script-Based Deployment (Imperative)
 
 Step-by-step deployment using organized scripts:
 
@@ -173,7 +173,7 @@ npm run setup:initialize-dex
 npm run query:reserves
 ```
 
-### 🏗️ Ignition-Based Deployment (Declarative)
+###  Ignition-Based Deployment (Declarative)
 
 Choose from different deployment scenarios:
 
@@ -193,55 +193,55 @@ npx hardhat ignition deploy ignition/modules/features/minimal.ts --network local
 
 ## 🔧 Available Scripts
 
-### 🏗️ Deployment
+### Deployment
 ```bash
 npm run deploy:all                 # Deploy all contracts
 ```
 
-### ⚙️ Setup & Configuration
+###  Setup & Configuration
 ```bash
 npm run setup:init-hash           # Calculate init code hash
 npm run setup:initialize-dex      # Initialize DEX with liquidity
 ```
 
-### 💧 Liquidity Management
+### Liquidity Management
 ```bash
 npm run liquidity:add             # Add liquidity to pairs
 npm run liquidity:remove          # Remove liquidity
 ```
 
-### 📈 Trading
+###  Trading
 ```bash
 npm run trade:swap                # Swap tokens
 ```
 
-### 🔧 Utilities
+### Utilities
 ```bash
 npm run utility:wmon-deposit      # Convert ETH to WMON
 npm run utility:wmon-withdraw     # Convert WMON to ETH
 npm run utility:approve-tokens    # Approve tokens for trading
 ```
 
-### 💼 Portfolio Management
+###  Portfolio Management
 ```bash
 npm run portfolio:create          # Create new portfolio
 npm run portfolio:view            # View portfolio details
 npm run portfolio:rebalance       # Rebalance portfolio
 ```
 
-### 🔍 Queries & Analytics
+### Queries & Analytics
 ```bash
 npm run query:reserves            # Check pair reserves
 npm run query:wmon               # WMON contract info
 npm run query:pair               # Get pair addresses
 ```
 
-### 🔄 Complete Workflows
+### Complete Workflows
 ```bash
 npm run workflow:full-setup       # Complete automated setup
 ```
 
-### 🛠️ Development
+###  Development
 ```bash
 npm run dev:node                  # Start local Hardhat node
 npm run dev:console              # Open Hardhat console
@@ -250,26 +250,26 @@ npm run test                     # Run tests
 npm run clean                    # Clean artifacts
 ```
 
-## 🌍 Multi-Environment Support
+##  Multi-Environment Support
 
 The project supports different deployment environments with tailored configurations:
 
-### 🏠 Localhost (Development)
+###  Localhost (Development)
 - High token supplies (1M+ tokens)
 - Large liquidity pools
 - Fast deployment settings
 
-### 🧪 Testnet (Staging)
+###  Testnet (Staging)
 - Moderate token supplies (100K tokens)
 - Reasonable liquidity pools
 - Production-like settings
 
-### 🌐 Mainnet (Production)
+###  Mainnet (Production)
 - Conservative token supplies (10K tokens)
 - Minimal initial liquidity
 - Security-focused configurations
 
-## 🏗️ Architecture Details
+##  Architecture Details
 
 ### DEX Components
 - **UniswapV2Factory**: Creates and manages trading pairs
@@ -284,7 +284,7 @@ The project supports different deployment environments with tailored configurati
 - **WMON**: Wrapped native token for trading pairs
 - **Test Tokens**: DAI, USDC, USDT, WBTC with realistic decimals
 
-## 🧪 Testing
+##  Testing
 
 Run the test suite:
 ```bash
@@ -298,7 +298,7 @@ npx hardhat test solidity
 npx hardhat test nodejs
 ```
 
-## 🔍 Verification & Monitoring
+##  Verification & Monitoring
 
 ### Check DEX Status
 ```bash
@@ -316,13 +316,13 @@ npm run portfolio:view   # View portfolio details and performance
 npm run query:wmon      # Check WMON contract details
 ```
 
-## 📖 Documentation
+##  Documentation
 
 - **[SETUP.md](SETUP.md)**: Detailed setup guide with both scripts and Ignition
 - **[Architecture Overview](#architecture-details)**: System design and components
 - **[API Reference](#available-scripts)**: Complete script and command reference
 
-## 🚨 Security Considerations
+##  Security Considerations
 
 ### For Production Deployment:
 1. **Multi-signature wallets** for admin functions
@@ -337,7 +337,7 @@ npm run query:wmon      # Check WMON contract details
 - Access control mechanisms
 - Emergency pause functionality
 
-## 🤝 Contributing
+##  Contributing
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
