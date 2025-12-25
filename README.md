@@ -78,7 +78,7 @@ npm run trading:swap -- --network $NETWORK
 npm run portfolio:create -- --network $NETWORK
 ```
 
-## �📁 Project Structure
+## 📁 Project Structure
 
 ```
 ├── contracts/                 # Smart contracts
