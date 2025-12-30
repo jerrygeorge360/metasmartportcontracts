@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-4157f191ab5a7a8f7b4231e3c9ddc4f7de019cd8",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/tokens/TestTokens.sol": "project/contracts/tokens/TestTokens.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/tokens/TestTokens.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.28;\n\n/**\n * @title TestERC20Base\n * @dev Base contract for test tokens with minting capability\n */\nabstract contract TestERC20Base {\n    string public name;\n    string public symbol;\n    uint8 public decimals;\n    uint256 public totalSupply;\n\n    mapping(address => uint256) public balanceOf;\n    mapping(address => mapping(address => uint256)) public allowance;\n\n    event Transfer(address indexed from, address indexed to, uint256 value);\n    event Approval(\n        address indexed owner,\n        address indexed spender,\n        uint256 value\n    );\n\n    constructor(string memory _name, string memory _symbol, uint8 _decimals) {\n        name = _name;\n        symbol = _symbol;\n        decimals = _decimals;\n    }\n\n    function transfer(address to, uint256 value) external returns (bool) {\n        return _transfer(msg.sender, to, value);\n    }\n\n    function transferFrom(\n        address from,\n        address to,\n        uint256 value\n    ) external returns (bool) {\n        if (allowance[from][msg.sender] != type(uint256).max) {\n            require(\n                allowance[from][msg.sender] >= value,\n                \"Insufficient allowance\"\n            );\n            allowance[from][msg.sender] -= value;\n        }\n        return _transfer(from, to, value);\n    }\n\n    function approve(address spender, uint256 value) external returns (bool) {\n        allowance[msg.sender][spender] = value;\n        emit Approval(msg.sender, spender, value);\n        return true;\n    }\n\n    // Anyone can mint for testing purposes\n    function mint(address to, uint256 amount) external {\n        _mint(to, amount);\n    }\n\n    // Burn tokens\n    function burn(uint256 amount) external {\n        require(balanceOf[msg.sender] >= amount, \"Insufficient balance\");\n        balanceOf[msg.sender] -= amount;\n        totalSupply -= amount;\n        emit Transfer(msg.sender, address(0), amount);\n    }\n\n    function _transfer(\n        address from,\n        address to,\n        uint256 value\n    ) internal returns (bool) {\n        require(balanceOf[from] >= value, \"Insufficient balance\");\n        require(to != address(0), \"Transfer to zero address\");\n\n        balanceOf[from] -= value;\n        balanceOf[to] += value;\n        emit Transfer(from, to, value);\n        return true;\n    }\n\n    function _mint(address to, uint256 value) internal {\n        require(to != address(0), \"Mint to zero address\");\n        totalSupply += value;\n        balanceOf[to] += value;\n        emit Transfer(address(0), to, value);\n    }\n}\n\n/**\n * @title TestDAI\n * @dev Test version of DAI stablecoin (18 decimals)\n */\ncontract TestDAI is TestERC20Base {\n    constructor() TestERC20Base(\"Test Dai Stablecoin\", \"DAI\", 18) {\n        // Mint initial supply to deployer for convenience\n        _mint(msg.sender, 1_000_000 * 10 ** 18); // 1M DAI\n    }\n}\n\n/**\n * @title TestUSDC\n * @dev Test version of USDC stablecoin (6 decimals)\n */\ncontract TestUSDC is TestERC20Base {\n    constructor() TestERC20Base(\"Test USD Coin\", \"USDC\", 6) {\n        // Mint initial supply to deployer\n        _mint(msg.sender, 1_000_000 * 10 ** 6); // 1M USDC\n    }\n}\n\n/**\n * @title TestUSDT\n * @dev Test version of USDT stablecoin (6 decimals)\n */\ncontract TestUSDT is TestERC20Base {\n    constructor() TestERC20Base(\"Test Tether USD\", \"USDT\", 6) {\n        // Mint initial supply to deployer\n        _mint(msg.sender, 1_000_000 * 10 ** 6); // 1M USDT\n    }\n}\n\n/**\n * @title TestWBTC\n * @dev Test version of Wrapped Bitcoin (8 decimals)\n */\ncontract TestWBTC is TestERC20Base {\n    constructor() TestERC20Base(\"Test Wrapped BTC\", \"WBTC\", 8) {\n        // Mint initial supply to deployer\n        _mint(msg.sender, 1_000 * 10 ** 8); // 1000 WBTC\n    }\n}\n"
+      }
+    }
+  }
+}

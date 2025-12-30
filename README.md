@@ -1,6 +1,75 @@
 # 🔥 MetaSmartPort Contracts
 
-A comprehensive decentralized exchange (DEX) and smart portfolio management system built on Ethereum. This project provides a complete DeFi infrastructure including token swapping, liquidity management, and automated portfolio rebalancing.
+A comprehensive decentralized ex#### 💡 Interact with Contracts
+```bash
+# Set network for all commands
+export NETWORK=monadTestnet
+
+# Initialize DEX with liquidity
+npm run setup:dex -- --network $NETWORK
+
+# Add liquidity to pools
+npm run liquidity:add -- --network $NETWORK
+
+# Execute token swaps
+npm run trading:swap -- --network $NETWORK
+
+# Create and manage portfolios
+npm run portfolio:create -- --network $NETWORK
+```
+
+### Ethereum Sepolia (Chain ID: 11155111)
+✅ **Deployed and Verified on Etherscan**
+
+#### 🪙 Token Contracts
+- **Test DAI**: [`0xAd22b4EC8cdd8A803d0052632566F6334A04F1F3`](https://sepolia.etherscan.io/address/0xAd22b4EC8cdd8A803d0052632566F6334A04F1F3#code)
+- **Test USDC**: [`0xcF9884827F587Cd9a0bDce33995B2333eE7e8285`](https://sepolia.etherscan.io/address/0xcF9884827F587Cd9a0bDce33995B2333eE7e8285#code)
+- **Test USDT**: [`0x1861BB06286aAb0fDA903620844b4Aef4894b719`](https://sepolia.etherscan.io/address/0x1861BB06286aAb0fDA903620844b4Aef4894b719#code)
+- **Test WBTC**: [`0x4267652AF61B4bE50A39e700ee2a160f42371f54`](https://sepolia.etherscan.io/address/0x4267652AF61B4bE50A39e700ee2a160f42371f54#code)
+
+#### 📊 Portfolio Management
+- **PortfolioFactory**: [`0x49C17A91672c629543a14782809E246296317bA3`](https://sepolia.etherscan.io/address/0x49C17A91672c629543a14782809E246296317bA3#code)
+
+#### 🔗 Existing DEX Infrastructure (Sepolia)
+*Uses existing Sepolia Uniswap V2 contracts:*
+- **UniswapV2Factory**: [`0xF62c03E08ada871A0bEb309762E260a7a6a880E6`](https://sepolia.etherscan.io/address/0xF62c03E08ada871A0bEb309762E260a7a6a880E6)
+- **UniswapV2Router02**: [`0xeE567Fe1712Faf6149d80dA1E6934E354124CfE3`](https://sepolia.etherscan.io/address/0xeE567Fe1712Faf6149d80dA1E6934E354124CfE3)
+
+#### 🔗 Quick Links
+- **Network**: Ethereum Sepolia Testnet
+- **RPC URL**: Alchemy (configured via `ALCHEMY_SEPOLIA_RPC_URL`)
+- **Block Explorer**: [sepolia.etherscan.io](https://sepolia.etherscan.io)
+- **Faucet**: [Sepolia Faucet](https://sepoliafaucet.com/)
+
+#### 🔍 Contract Verification
+To deploy your own contracts on Sepolia:
+
+```bash
+# Deploy only test tokens and portfolio (uses existing Sepolia DEX)
+npx hardhat ignition deploy ignition/modules/features/sepolia-deployment.ts --network sepolia
+
+# Verify all deployed contracts automatically
+npx hardhat ignition verify chain-11155111 --network sepolia
+```
+
+**Requirements for verification:**
+- Ensure `dotenv` is installed: `npm install dotenv`
+- Set `PRIVATE_KEY` in your `.env` file
+- Set `ETHERSCAN_API_KEY` in your `.env` file (for Etherscan verification)
+- Set `ALCHEMY_SEPOLIA_RPC_URL` in your `.env` file (Alchemy RPC endpoint)
+
+#### 💡 Interact with Contracts
+```bash
+# Set network for all commands
+export NETWORK=sepolia
+
+# Create and manage portfolios (uses existing Sepolia DEX)
+npm run portfolio:create -- --network $NETWORK
+
+# Portfolio operations
+npm run portfolio:view -- --network $NETWORK
+npm run portfolio:rebalance -- --network $NETWORK
+```smart portfolio management system built on Ethereum. This project provides a complete DeFi infrastructure including token swapping, liquidity management, and automated portfolio rebalancing.
 
 ## 🚀 Project Overview
 

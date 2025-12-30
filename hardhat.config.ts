@@ -29,9 +29,23 @@ export default defineConfig({
       accounts: [configVariable("PRIVATE_KEY")],
       chainId: 10143,
     },
+    sepolia: {
+      type: "http",
+      url: configVariable("ALCHEMY_SEPOLIA_RPC_URL"),
+      accounts: [configVariable("PRIVATE_KEY")],
+      chainId: 11155111,
+    },
     
   },
   
+  ignition: {
+    strategyConfig: {
+      create2: {
+        // Salt for deterministic addresses across networks (must be exactly 32 bytes)
+        salt: "0x4d6574615370617274506f727400000000000000000000000000000000000000",
+      },
+    },
+  },
 
   verify: {
     etherscan: (
@@ -53,6 +67,14 @@ export default defineConfig({
             urls: {
               apiURL: "https://api.etherscan.io/v2/api?chainid=10143",
               browserURL: "https://testnet.monadscan.com",
+            },
+          },
+          {
+            network: "sepolia",
+            chainId: 11155111,
+            urls: {
+              apiURL: "https://api.etherscan.io/api",
+              browserURL: "https://sepolia.etherscan.io",
             },
           },
         ],
