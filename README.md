@@ -63,6 +63,12 @@ npx hardhat ignition verify chain-11155111 --network sepolia
 # Set network for all commands
 export NETWORK=sepolia
 
+# Add liquidity using deployed test tokens
+npx hardhat run scripts/03-liquidity/add-liquidity-sepolia.ts --network sepolia
+
+# Add custom amounts or tokens
+npx hardhat run scripts/03-liquidity/add-liquidity-sepolia.ts --network sepolia -- --tokenA 0xAd22... --tokenB 0xcF98... --amountA 100 --amountB 50
+
 # Create and manage portfolios (uses existing Sepolia DEX)
 npm run portfolio:create -- --network $NETWORK
 
